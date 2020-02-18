@@ -31,10 +31,15 @@
       </select>
       <label for="insurance">Ubezpieczenie</label>
       <input type="checkbox" name="insurance" id="insurance">
-      <input type="date" name="date" id="datein">
-      <input type="date" name="date" id="dateout">
+      <input type="date" name="date" id="datein" onchange="selectDate(event)">
+      <input type="date" name="date" id="dateout" onchange="selectDate(event)">
       <label for="extra">Dodatki</label>
-      <select name="extra" id="extra"></select>
+      <select name="extra" id="extra" onchange="selectExtra()">
+        <option value="---">---</option>
+        <option value="baby seat">baby seat</option>
+        <option value="child seat">child seat</option>
+        <option value="booster">booster seat</option>
+      </select>
       <label for="adnotations">Uwagi</label>
       <input type="text" name="adnotations" id="adnotations">
       <button class="ok">ok</button>

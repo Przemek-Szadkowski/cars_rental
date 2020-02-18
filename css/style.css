@@ -81,6 +81,19 @@ div.text {
   margin: 0 auto;
   border-radius: 10px;
   overflow: scroll;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+
+div.text p {
+  text-transform: uppercase;
+}
+
+div.text p span {
+  font-weight: bold;
+  font-size: 1.2rem;
 }
 
 div.buttons {
