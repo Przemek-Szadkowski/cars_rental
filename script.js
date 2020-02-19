@@ -162,8 +162,6 @@ function handleSaveButton() {
                 id: time.toLocaleString(),
         }
 
-        console.table(cars);
-
         modal.classList.remove('active');
         modal_text.textContent = '';
 
