@@ -137,6 +137,11 @@ div.text_history {
   overflow: scroll;
 }
 
+div.text_history p {
+  text-transform: uppercase;
+  margin: 10px 0;
+}
+
 button.back {
   height: 8%;
   width: 45%;

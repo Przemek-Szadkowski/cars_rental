@@ -3,6 +3,7 @@ const history_button = document.querySelector('.history_button');
 const modal = document.querySelector('.modal');
 const modal_text = document.querySelector('.text');
 const history = document.querySelector('.history');
+const divHistory = document.querySelector('.text_history');
 
 const name_input = document.querySelector('input[id="name"]');
 const hotel_input = document.querySelector('input[id="hotel"]');
@@ -15,8 +16,12 @@ const endDate = document.querySelector('input[id="dateout"]');
 const buttonChange = document.querySelector('.change');
 const extraSelect = document.querySelector('select[id="extra"]');
 const extra_options = extraSelect.querySelectorAll('option');
+const saveButton = document.querySelector('.save');
 const adnotationsInput = document.querySelector('input[id="adnotations"]');
+const backButton = document.querySelector('.back');
 
+
+let cars = [];
 
 let name;
 let hotel;
@@ -112,8 +117,8 @@ function handleOkButton() {
         <p>${insurance.checked ? "z ubezpieczeniem" : "bez ubezpieczenia"}</p>
         <p>Od: <span>${dateIn} ${dayIn}</span></p>
         <p>Do: <span>${dateOut} ${dayOut}</span></p>
-        <p><span>${extraAdd}</span></p>
-        <p>${adnotations}</p>
+        <p><span>+ ${extraAdd}</span></p>
+        <p><span>${adnotations}</span></p>
         `;
 
         if(carClass === undefined) {
@@ -122,14 +127,18 @@ function handleOkButton() {
 
         modal.classList.add('active');
         modal_text.insertAdjacentHTML("afterbegin", htmlText);
-        console.log(name);
-        console.log(hotel);
-        console.log(room);
-        console.log(carClass);
 }
 
 function handleHistoryButton() {
         history.classList.add('active');
+        const lsCars = JSON.parse(localStorage.getItem('cars'));
+        if(lsCars.length) {
+                cars = lsCars;
+        }
+        const html = cars.map(car =>
+                `<p>${car.id} / ${car.name} / ${car.hotel} / ${car.room} / ${car.carClass} / ${car.insurance} / ${car.dateIn} / ${car.dateOut} / ${car.extraAdd} / ${car.adnotations}</p>`
+        ).join('');
+        divHistory.innerHTML = html;
 }
 
 function handleChangeButton() {
@@ -137,6 +146,51 @@ function handleChangeButton() {
         modal_text.textContent = '';
 }
 
+function handleSaveButton() {
+        const time = new Date;
+
+        const car = {
+                name,
+                hotel,
+                room,
+                carClass,
+                insurance: insurance.checked ? "z ubezp." : "",
+                dateIn,
+                dateOut,
+                extraAdd,
+                adnotations,
+                id: time.toLocaleString(),
+        }
+
+        console.table(cars);
+
+        modal.classList.remove('active');
+        modal_text.textContent = '';
+
+        const lsCars = JSON.parse(localStorage.getItem('cars'));
+
+        if(lsCars === null) {
+                if(carClass !== undefined && car.carClass !== "-") {
+                        cars.push(car);
+                }
+        } else if(lsCars.length) {
+                cars.push(...lsCars);
+                if(carClass !== undefined && car.carClass !== "-") {
+                        cars.push(car);
+                }
+        }
+        localStorage.setItem('cars', JSON.stringify(cars));
+        location.reload();
+}
+
+function handleBackButton() {
+        history.classList.remove('active');
+        divHistory.textContent = '';
+        location.reload();
+}
+
 ok_button.addEventListener('click', handleOkButton);
 history_button.addEventListener('click', handleHistoryButton);
 buttonChange.addEventListener('click', handleChangeButton);
+saveButton.addEventListener('click', handleSaveButton);
+backButton.addEventListener('click', handleBackButton);
