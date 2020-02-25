@@ -132,11 +132,12 @@ function handleOkButton() {
 function handleHistoryButton() {
         history.classList.add('active');
         const lsCars = JSON.parse(localStorage.getItem('cars'));
+        let counter = 0;
         if(lsCars.length) {
                 cars = lsCars;
         }
         const html = cars.map(car =>
-                `<p>${car.id} / ${car.name} / ${car.hotel} / ${car.room} / ${car.carClass} / ${car.insurance} / ${car.dateIn} / ${car.dateOut} / ${car.extraAdd} / ${car.adnotations}</p>`
+                `<p>${++counter}: ${car.id} / ${car.name} / ${car.hotel} / ${car.room} / ${car.carClass} / ${car.insurance} / ${car.dateIn} / ${car.dateOut} / ${car.extraAdd} / ${car.adnotations}</p>`
         ).join('');
         divHistory.innerHTML = html;
 }
