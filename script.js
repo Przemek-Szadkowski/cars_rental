@@ -179,7 +179,8 @@ function handleSaveButton() {
                 }
         }
         localStorage.setItem('cars', JSON.stringify(cars));
-        location.reload();
+        // location.reload();
+        event.currentTarget.reset();
 }
 
 function handleBackButton() {
