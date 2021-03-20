@@ -1,7 +1,7 @@
 ![my idea](my_idea.png)
 
-# map_of_buczek_new
-> Map of my town - Buczek. In a simply way you can find any street and important building in Buczek.
+# cars_rental
+> Simple app which helps in car renting. It simplifies work of holiday representative.
 
 ## Table of contents
 * [Colors key](#colors-key)
@@ -18,15 +18,12 @@
 
 ## General info
 
-I decided to build app which helps to find streets in my town. Then I added main buldings. This project was one of my first bigger web projects. The biggest issue was to add two streets, far from main map. But I made extra map and simple animation - so when street Szadek and Wygwizdow is clicked, new map shows up.
+This app helped me in my work on greek island Corfu. I worked as holiday representative and every single day I collected many car rental orders from tourists. I talking on the phone and I needed to write down all informations. So I made this app and I was using it on my second phone. This app saves all data to localstorage so it is possible to check all previous orders.
 
 ## Screenshots
 
-### Desktop view
-![desktop view](main_window.jpg)
-
-### Mobile view
-![mobile view](mobile_window.jpg)
+### Main view
+![main view](main_window.jpg)
 
 ## Technologies
 * HTML
@@ -35,13 +32,13 @@ I decided to build app which helps to find streets in my town. Then I added main
 
 ## Features
 
-Live demo https://przemek-szadkowski.github.io/map_of_buczek_new/
+Live demo https://przemek-szadkowski.github.io/cars_rental/
 
 ## Status
 Project is: finished
 
 ## Inspiration
-Project inspired by my friend who don't remember streets in my town.
+Project inspired by my every day work on greek island Corfu.
 
 ## Contact
 Created by [przemoszadkowski@o2.pl](mailto:user@example.com) - feel free to contact me!
