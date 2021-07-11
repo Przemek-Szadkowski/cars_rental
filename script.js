@@ -28,7 +28,7 @@ let hotel;
 let room;
 let carClass;
 let htmlText;
-let withInsurance = false;
+// let withInsurance = false;
 let dateIn;
 let dayIn;
 let dayOut;
@@ -51,6 +51,18 @@ number_input.addEventListener('input', function(e) {
 adnotationsInput.addEventListener('input', function(e) {
         adnotations = e.target.value;
 })
+
+function clearInputs() {
+        name_input.value = '';
+        hotel_input.value = '';
+        number_input.value = '';
+        class_select.value = '';
+        insurance.checked = false;
+        startDate.value = '';
+        endDate.value = '';
+        extraSelect.value = '';
+        adnotationsInput.value = '';
+}
 
 function selectCars() {
         car_options.forEach(car => {
@@ -132,7 +144,6 @@ function handleOkButton() {
 function handleHistoryButton() {
         history.classList.add('active');
         const lsCars = JSON.parse(localStorage.getItem('cars'));
-        console.log(lsCars);
         let counter = 0;
         if(lsCars.length) {
                 cars = lsCars;
@@ -180,13 +191,13 @@ function handleSaveButton() {
                 }
         }
         localStorage.setItem('cars', JSON.stringify(cars));
-        location.reload();
+        clearInputs();
 }
 
 function handleBackButton() {
         history.classList.remove('active');
         divHistory.textContent = '';
-        location.reload();
+        clearInputs();
 }
 
 ok_button.addEventListener('click', handleOkButton);
