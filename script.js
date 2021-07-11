@@ -5,9 +5,9 @@ const modal_text = document.querySelector('.text');
 const history = document.querySelector('.history');
 const divHistory = document.querySelector('.text_history');
 
-const name_input = document.querySelector('input[id="name"]');
-const hotel_input = document.querySelector('input[id="hotel"]');
-const number_input = document.querySelector('input[id="room"]');
+const nameInput = document.querySelector('input[id="name"]');
+const hotelInput = document.querySelector('input[id="hotel"]');
+const numberInput = document.querySelector('input[id="room"]');
 const class_select = document.querySelector('select[id="cars"]');
 const car_options = class_select.querySelectorAll('option');
 const insurance = document.querySelector('input[id="insurance"]');
@@ -23,7 +23,7 @@ const backButton = document.querySelector('.back');
 
 let cars = [];
 
-let name;
+let clientName;
 let hotel;
 let room;
 let carClass;
@@ -36,15 +36,15 @@ let dateOut;
 let extraAdd = '';
 let adnotations = '';
 
-name_input.addEventListener('input', function(e) {
-        name = e.target.value;
+nameInput.addEventListener('input', function(e) {
+        clientName = e.target.value;
 })
 
-hotel_input.addEventListener('input', function(e) {
+hotelInput.addEventListener('input', function(e) {
         hotel = e.target.value;
 })
 
-number_input.addEventListener('input', function(e) {
+numberInput.addEventListener('input', function(e) {
         room = e.target.value;
 })
 
@@ -53,9 +53,9 @@ adnotationsInput.addEventListener('input', function(e) {
 })
 
 function clearInputs() {
-        name_input.value = '';
-        hotel_input.value = '';
-        number_input.value = '';
+        nameInput.value = '';
+        hotelInput.value = '';
+        numberInput.value = '';
         class_select.value = '';
         insurance.checked = false;
         startDate.value = '';
@@ -122,7 +122,7 @@ function selectDate(e) {
 
 function handleOkButton() {
         htmlText = `
-        <p><span>${name}</span></p>
+        <p><span>${clientName}</span></p>
         <p>${hotel}</p>
         <p>pokój nr <span>${room}</span></p>
         <p>klasa: <span>${carClass}</span></p>
@@ -149,7 +149,7 @@ function handleHistoryButton() {
                 cars = lsCars;
         }
         const historyHtml = cars.map(car =>
-                `<p>${++counter}: ${car.id} / ${car.name} / ${car.hotel} / ${car.room} / ${car.carClass} / ${car.insurance} / ${car.dateIn} / ${car.dateOut} / ${car.extraAdd} / ${car.adnotations}</p>`
+                `<p>${++counter}: ${car.id} / ${car.clientName} / ${car.hotel} / ${car.room} / ${car.carClass} / ${car.insurance} / ${car.dateIn} / ${car.dateOut} / ${car.extraAdd} / ${car.adnotations}</p>`
         ).join('');
         divHistory.innerHTML = historyHtml;
 }
@@ -163,7 +163,7 @@ function handleSaveButton() {
         const time = new Date;
 
         const car = {
-                name,
+                clientName,
                 hotel,
                 room,
                 carClass,
