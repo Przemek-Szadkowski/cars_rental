@@ -1,10 +1,10 @@
-//IMPORTS ↓↓↓
+//IMPORTS
 
 import * as selectors from './utils/selectors.js';
 import Reservation from './Reservation.js';
 import { getElement, getElementsInParentsElement, findDay, clearInputs } from './utils/helpers.js';
 
-// ELEMENTS ↓↓↓
+// ELEMENTS
 
 const ok_button = getElement(selectors.OK_BUTTON_CLASS);
 const history_button = getElement(selectors.HISTORY_BUTTON_CLASS);
@@ -27,28 +27,43 @@ const saveButton = getElement(selectors.SAVE_BUTTON_SELECTOR);
 const adnotationsInput = getElement(selectors.ADNOTATIONS_INPUT_SELECTOR);
 const backButton = getElement(selectors.BACK_BUTTON_SELECTOR);
 
-// VARIABLES ↓↓↓
+// VARIABLES
 
-let htmlText;
 let cars = [];
 
 const reservation = new Reservation(); 
 
+let clientName;
+let hotel;
+let room;
+let carClass;
+let htmlText;
+let dateIn;
+let dayIn;
+let dayOut;
+let dateOut;
+let extraAdd = '';
+let adnotations = '';
+
 //EVENT LISTENERS SECTION - START
 
 nameInput.addEventListener('input', function(e) {
+        // clientName = e.target.value;
         reservation.clientName = e.target.value;
 });
 
 hotelInput.addEventListener('input', function(e) {
+        // hotel = e.target.value;
         reservation.hotel = e.target.value;
 });
 
 numberInput.addEventListener('input', function(e) {
+        // room = e.target.value;
         reservation.room = e.target.value;
 });
 
 adnotationsInput.addEventListener('input', function(e) {
+        // adnotations = e.target.value;
         reservation.adnotations = e.target.value;
 });
 
@@ -65,11 +80,13 @@ backButton.addEventListener('click', handleBackButton);
 
 //EVENT LISTENERS SECTION - END
 
-//FUNCTIONS ↓↓↓
+//dodać DOM Purify
+
 
 function selectCars() {
         car_options.forEach(car => {
                 if(car.selected) {
+                        // carClass = car.value;
                         reservation.carClass = car.value;
                 }
         })
@@ -78,6 +95,7 @@ function selectCars() {
 function selectExtra() {
         extra_options.forEach(extra => {
                 if(extra.selected) {
+                        // extraAdd = extra.value;
                         reservation.extraAdd = extra.value;
                 }
         })
@@ -85,9 +103,13 @@ function selectExtra() {
 
 function selectDate(e) {
         if(e.target.id === "datein") {
+                // dateIn = e.target.value;
+                // dayIn = findDay(e.target.valueAsDate.getUTCDay());
                 reservation.dateIn = e.target.value;
                 reservation.dayIn = findDay(e.target.valueAsDate.getUTCDay());
         } else if(e.target.id === "dateout") {
+                // dateOut = e.target.value;
+                // dayOut = findDay(e.target.valueAsDate.getUTCDay());
                 reservation.dateOut = e.target.value;
                 reservation.dayOut = findDay(e.target.valueAsDate.getUTCDay());
         }
@@ -146,8 +168,6 @@ function handleSaveButton() {
         const lsCars = JSON.parse(localStorage.getItem('cars'));
         
 
-        //save to localstorage ↓↓↓
-
         if(lsCars === null) {
                 if(reservation.carClass !== undefined && reservation.carClass !== "-") {
                         cars.push(reservation);
@@ -159,17 +179,11 @@ function handleSaveButton() {
                 }
         }
         localStorage.setItem('cars', JSON.stringify(cars));
-
-        // clear inputs ↓↓↓
-
         clearInputs(nameInput, hotelInput, numberInput, class_select, insurance, startDate, endDate, extraSelect, adnotationsInput);
 }
 
 function handleBackButton() {
         history.classList.remove('active');
         divHistory.textContent = '';
-
-        //clear inputs ↓↓↓
-
         clearInputs(nameInput, hotelInput, numberInput, class_select, insurance, startDate, endDate, extraSelect, adnotationsInput);
 }

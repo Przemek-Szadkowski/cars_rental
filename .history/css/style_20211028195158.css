@@ -58,7 +58,7 @@ button {
 
 input[type="date"] {
   background-color: var(--input-secondary-color);
-  color: var(--text-color);
+  color: var(--date-input-text-color);
 }
 
 button {
@@ -141,7 +141,7 @@ div.history {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: var(--input-primary-color);
+  background-color: #ffc20e;
   border-radius: 10px;
 }
 

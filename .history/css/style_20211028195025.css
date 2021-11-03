@@ -4,7 +4,6 @@
   --input-secondary-color: #d72567;
   --history-button-color: #94c324;
   --history-button-text-color: #223a6a;
-  --text-color: #ccc;
 }
 
 * {
@@ -43,7 +42,7 @@ div.selection {
 }
 
 label {
-  color: var(--text-color);
+  color: white;
 }
 
 select,
@@ -58,7 +57,7 @@ button {
 
 input[type="date"] {
   background-color: var(--input-secondary-color);
-  color: var(--text-color);
+  /* color: #fff; */
 }
 
 button {
@@ -141,7 +140,7 @@ div.history {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: var(--input-primary-color);
+  background-color: #ffc20e;
   border-radius: 10px;
 }
 

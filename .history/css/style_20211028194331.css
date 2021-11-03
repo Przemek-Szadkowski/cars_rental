@@ -1,10 +1,4 @@
 :root {
-  --background-color: #223a6a;
-  --input-primary-color: #ffc20e;
-  --input-secondary-color: #d72567;
-  --history-button-color: #94c324;
-  --history-button-text-color: #223a6a;
-  --text-color: #ccc;
 }
 
 * {
@@ -14,10 +8,11 @@
 }
 
 html {
+  /* width: 100%; */
   max-width: 700px;
   margin: 0 auto;
   height: 100vh;
-  background-color: var(--background-color);
+  background-color: #223a6a;
 }
 
 div.rotate {
@@ -40,10 +35,11 @@ div.selection {
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
+  /* display: none; */
 }
 
 label {
-  color: var(--text-color);
+  color: white;
 }
 
 select,
@@ -53,24 +49,24 @@ button {
   height: 5%;
   width: 70%;
   text-transform: uppercase;
-  background-color: var(--input-primary-color);
+  background-color: #ffc20e;
 }
 
 input[type="date"] {
-  background-color: var(--input-secondary-color);
-  color: var(--text-color);
+  background-color: #d72567;
+  color: white;
 }
 
 button {
   width: 25%;
   margin: 5px 0;
-  background-color: var(--input-secondary-color);
-  color: var(--input-primary-color);
+  background-color: #d72567;
+  color: #ffc20e;
 }
 
 button.history_button {
-  background-color: var(--history-button-color);
-  color: var(--history-button-text-color);
+  background-color: #94c324;
+  color: #223a6a;
 }
 
 div.modal {
@@ -85,7 +81,7 @@ div.modal {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: var(--input-primary-color);
+  background-color: #ffc20e;
   border-radius: 10px;
 }
 
@@ -141,7 +137,7 @@ div.history {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: var(--input-primary-color);
+  background-color: #ffc20e;
   border-radius: 10px;
 }
 

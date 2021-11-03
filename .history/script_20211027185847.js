@@ -1,10 +1,10 @@
-//IMPORTS ↓↓↓
+//IMPORTS
 
 import * as selectors from './utils/selectors.js';
 import Reservation from './Reservation.js';
 import { getElement, getElementsInParentsElement, findDay, clearInputs } from './utils/helpers.js';
 
-// ELEMENTS ↓↓↓
+// ELEMENTS
 
 const ok_button = getElement(selectors.OK_BUTTON_CLASS);
 const history_button = getElement(selectors.HISTORY_BUTTON_CLASS);
@@ -27,7 +27,7 @@ const saveButton = getElement(selectors.SAVE_BUTTON_SELECTOR);
 const adnotationsInput = getElement(selectors.ADNOTATIONS_INPUT_SELECTOR);
 const backButton = getElement(selectors.BACK_BUTTON_SELECTOR);
 
-// VARIABLES ↓↓↓
+// VARIABLES
 
 let htmlText;
 let cars = [];
@@ -65,7 +65,7 @@ backButton.addEventListener('click', handleBackButton);
 
 //EVENT LISTENERS SECTION - END
 
-//FUNCTIONS ↓↓↓
+//FUNCTIONS 
 
 function selectCars() {
         car_options.forEach(car => {
@@ -146,7 +146,7 @@ function handleSaveButton() {
         const lsCars = JSON.parse(localStorage.getItem('cars'));
         
 
-        //save to localstorage ↓↓↓
+        //save to localstorage
 
         if(lsCars === null) {
                 if(reservation.carClass !== undefined && reservation.carClass !== "-") {
@@ -160,7 +160,7 @@ function handleSaveButton() {
         }
         localStorage.setItem('cars', JSON.stringify(cars));
 
-        // clear inputs ↓↓↓
+        // clear inputs
 
         clearInputs(nameInput, hotelInput, numberInput, class_select, insurance, startDate, endDate, extraSelect, adnotationsInput);
 }
@@ -169,7 +169,7 @@ function handleBackButton() {
         history.classList.remove('active');
         divHistory.textContent = '';
 
-        //clear inputs ↓↓↓
+        //clear inputs
 
         clearInputs(nameInput, hotelInput, numberInput, class_select, insurance, startDate, endDate, extraSelect, adnotationsInput);
 }

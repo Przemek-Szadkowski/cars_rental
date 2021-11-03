@@ -20,7 +20,7 @@
         <label for="room">Numer pokoju</label>
         <input type="number" name="room" id="room" />
         <label for="cars">Klasa</label>
-        <select name="class" id="cars">
+        <select name="class" id="cars" onchange="selectCars()">
           <option value="-">---</option>
           <option value="a">A</option>
           <option value="b">B</option>
@@ -30,10 +30,20 @@
         </select>
         <label for="insurance">Ubezpieczenie</label>
         <input type="checkbox" name="insurance" id="insurance" />
-        <input type="date" name="date" id="datein" />
-        <input type="date" name="date" id="dateout" />
+        <input
+          type="date"
+          name="date"
+          id="datein"
+          onchange="selectDate(event)"
+        />
+        <input
+          type="date"
+          name="date"
+          id="dateout"
+          onchange="selectDate(event)"
+        />
         <label for="extra">Dodatki</label>
-        <select name="extra" id="extra">
+        <select name="extra" id="extra" onchange="selectExtra()">
           <option value="---">---</option>
           <option value="baby seat">baby seat</option>
           <option value="child seat">child seat</option>
@@ -56,6 +66,6 @@
         <button class="back">powrót</button>
       </div>
     </div>
-    <script src="./script.js" type="module"></script>
+    <script src="./script.js"></script>
   </body>
 </html>

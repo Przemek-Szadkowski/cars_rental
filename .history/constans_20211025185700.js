@@ -1,0 +1,21 @@
+export const OK_BUTTON_CLASS = '.ok';
+export const HISTORY_BUTTON_CLASS = '.history_button';
+export const MODAL_CLASS = '.modal';
+export const MODAL_TEXT_CLASS = '.text';
+export const HISTORY_CLASS = '.history';
+export const DIV_HISTORY_CLASS = '.text_history';
+
+export const NAME_INPUT_SELECTOR = 'input[id="name"]';
+export const HOTEL_INPUT_SELECTOR = 'input[id="hotel"]';
+export const NUMBER_INPUT_SELECTOR = 'input[id="room"]';
+export const CLASS_SELECT_SELECTOR = 'select[id="cars"]';
+export const CAR_OPTIONS_SELECTOR = 'option';
+export const INSURANCE_SELECTOR = 'input[id="insurance"]';
+export const START_DATE_SELECTOR = 'input[id="datein"]';
+export const END_DATE_SELECTOR = 'input[id="dateout"]';
+export const BUTTON_CHANGE_SELECTOR = '.change';
+export const EXTRA_SELECT_SELECTOR = 'select[id="extra"]';
+export const EXTRA_OPTIONS_SELECTOR = 'option';
+export const SAVE_BUTTON_SELECTOR = '.save';
+export const ADNOTATIONS_INPUT_SELECTOR = 'input[id="adnotations"]';
+export const BACK_BUTTON_SELECTOR = '.back';

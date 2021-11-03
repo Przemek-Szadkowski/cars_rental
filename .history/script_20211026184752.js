@@ -1,10 +1,8 @@
-//IMPORTS ↓↓↓
-
 import * as selectors from './utils/selectors.js';
-import Reservation from './Reservation.js';
-import { getElement, getElementsInParentsElement, findDay, clearInputs } from './utils/helpers.js';
+import { getElement, getElementsInParentsElement } from './utils/helpers.js';
+import { findDay, clearInputs } from './helpers.js';
 
-// ELEMENTS ↓↓↓
+// ELEMENTS
 
 const ok_button = getElement(selectors.OK_BUTTON_CLASS);
 const history_button = getElement(selectors.HISTORY_BUTTON_CLASS);
@@ -27,29 +25,38 @@ const saveButton = getElement(selectors.SAVE_BUTTON_SELECTOR);
 const adnotationsInput = getElement(selectors.ADNOTATIONS_INPUT_SELECTOR);
 const backButton = getElement(selectors.BACK_BUTTON_SELECTOR);
 
-// VARIABLES ↓↓↓
+// VARIABLES
 
-let htmlText;
 let cars = [];
 
-const reservation = new Reservation(); 
+let clientName;
+let hotel;
+let room;
+let carClass;
+let htmlText;
+let dateIn;
+let dayIn;
+let dayOut;
+let dateOut;
+let extraAdd = '';
+let adnotations = '';
 
 //EVENT LISTENERS SECTION - START
 
 nameInput.addEventListener('input', function(e) {
-        reservation.clientName = e.target.value;
+        clientName = e.target.value;
 });
 
 hotelInput.addEventListener('input', function(e) {
-        reservation.hotel = e.target.value;
+        hotel = e.target.value;
 });
 
 numberInput.addEventListener('input', function(e) {
-        reservation.room = e.target.value;
+        room = e.target.value;
 });
 
 adnotationsInput.addEventListener('input', function(e) {
-        reservation.adnotations = e.target.value;
+        adnotations = e.target.value;
 });
 
 class_select.addEventListener('change', selectCars);
@@ -65,12 +72,27 @@ backButton.addEventListener('click', handleBackButton);
 
 //EVENT LISTENERS SECTION - END
 
-//FUNCTIONS ↓↓↓
+//dodać DOM Purify
+
+//to może z argsami???
+
+// function clearInputs() {
+//         nameInput.value = '';
+//         hotelInput.value = '';
+//         numberInput.value = '';
+//         class_select.value = '';
+//         insurance.checked = false;
+//         startDate.value = '';
+//         endDate.value = '';
+//         extraSelect.value = '';
+//         adnotationsInput.value = '';
+// }
+
 
 function selectCars() {
         car_options.forEach(car => {
                 if(car.selected) {
-                        reservation.carClass = car.value;
+                        carClass = car.value;
                 }
         })
 }
@@ -78,35 +100,35 @@ function selectCars() {
 function selectExtra() {
         extra_options.forEach(extra => {
                 if(extra.selected) {
-                        reservation.extraAdd = extra.value;
+                        extraAdd = extra.value;
                 }
         })
 }
 
 function selectDate(e) {
         if(e.target.id === "datein") {
-                reservation.dateIn = e.target.value;
-                reservation.dayIn = findDay(e.target.valueAsDate.getUTCDay());
+                dateIn = e.target.value;
+                dayIn = findDay(e.target.valueAsDate.getUTCDay());
         } else if(e.target.id === "dateout") {
-                reservation.dateOut = e.target.value;
-                reservation.dayOut = findDay(e.target.valueAsDate.getUTCDay());
+                dateOut = e.target.value;
+                dayOut = findDay(e.target.valueAsDate.getUTCDay());
         }
 }
 
 function handleOkButton() {
         htmlText = `
-        <p><span>${reservation.clientName}</span></p>
-        <p>${reservation.hotel}</p>
-        <p>pokój nr <span>${reservation.room}</span></p>
-        <p>klasa: <span>${reservation.carClass}</span></p>
+        <p><span>${clientName}</span></p>
+        <p>${hotel}</p>
+        <p>pokój nr <span>${room}</span></p>
+        <p>klasa: <span>${carClass}</span></p>
         <p>${insurance.checked ? "z ubezpieczeniem" : "bez ubezpieczenia"}</p>
-        <p>Od: <span>${reservation.dateIn} ${reservation.dayIn}</span></p>
-        <p>Do: <span>${reservation.dateOut} ${reservation.dayOut}</span></p>
-        <p><span>+ ${reservation.extraAdd}</span></p>
-        <p><span>${reservation.adnotations}</span></p>
+        <p>Od: <span>${dateIn} ${dayIn}</span></p>
+        <p>Do: <span>${dateOut} ${dayOut}</span></p>
+        <p><span>+ ${extraAdd}</span></p>
+        <p><span>${adnotations}</span></p>
         `;
 
-        if(reservation.carClass === undefined) {
+        if(carClass === undefined) {
                 htmlText = `<p>wprowadż klasę!!!</p>`;
         }
 
@@ -118,7 +140,7 @@ function handleHistoryButton() {
         history.classList.add('active');
         const lsCars = JSON.parse(localStorage.getItem('cars'));
         let counter = 0;
-        if(lsCars) {
+        if(lsCars.length) {
                 cars = lsCars;
         }
         const historyHtml = cars.map(car =>
@@ -133,43 +155,42 @@ function handleChangeButton() {
 }
 
 function handleSaveButton() {
-        cars = [];
         const time = new Date;
 
-        reservation.id = time.toLocaleString();
-        reservation.insurance = insurance.checked ? "z ubezp." : "",
-
+        const car = {
+                clientName,
+                hotel,
+                room,
+                carClass,
+                insurance: insurance.checked ? "z ubezp." : "",
+                dateIn,
+                dateOut,
+                extraAdd,
+                adnotations,
+                id: time.toLocaleString(),
+        }
 
         modal.classList.remove('active');
         modal_text.textContent = '';
 
         const lsCars = JSON.parse(localStorage.getItem('cars'));
-        
-
-        //save to localstorage ↓↓↓
 
         if(lsCars === null) {
-                if(reservation.carClass !== undefined && reservation.carClass !== "-") {
-                        cars.push(reservation);
+                if(carClass !== undefined && car.carClass !== "-") {
+                        cars.push(car);
                 }
-        } else {
+        } else if(lsCars.length) {
                 cars.push(...lsCars);
-                if(reservation.carClass !== undefined && reservation.carClass !== "-") {
-                        cars.push(reservation);
+                if(carClass !== undefined && car.carClass !== "-") {
+                        cars.push(car);
                 }
         }
         localStorage.setItem('cars', JSON.stringify(cars));
-
-        // clear inputs ↓↓↓
-
         clearInputs(nameInput, hotelInput, numberInput, class_select, insurance, startDate, endDate, extraSelect, adnotationsInput);
 }
 
 function handleBackButton() {
         history.classList.remove('active');
         divHistory.textContent = '';
-
-        //clear inputs ↓↓↓
-
         clearInputs(nameInput, hotelInput, numberInput, class_select, insurance, startDate, endDate, extraSelect, adnotationsInput);
 }

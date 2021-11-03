@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="pl">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Cars</title>
+  <meta name="description" content="Cars">
+  <link rel="stylesheet" href="css/style.css">
+  <meta name='robots' content='index,follow'>
+</head>
+
+<body>
+  <div class="wrapper">
+    <div class="selection">
+      <label for="name">Imię i Nazwisko</label>
+      <input type="text" name="name" id="name">
+      <label for="hotel">Hotel</label>
+      <input type="text" name="hotel" id="hotel">
+      <label for="room">Numer pokoju</label>
+      <input type="number" name="room" id="room">
+      <label for="cars">Klasa</label>
+      <select name="class" id="cars" onchange="selectCars()">
+        <option value="-">---</option>
+        <option value="a">A</option>
+        <option value="b">B</option>
+        <option value="c">C</option>
+        <option value="d">D</option>
+        <option value="e">E</option>
+      </select>
+      <label for="insurance">Ubezpieczenie</label>
+      <input type="checkbox" name="insurance" id="insurance">
+      <input type="date" name="date" id="datein" onchange="selectDate(event)">
+      <input type="date" name="date" id="dateout" onchange="selectDate(event)">
+      <label for="extra">Dodatki</label>
+      <select name="extra" id="extra" onchange="selectExtra()">
+        <option value="---">---</option>
+        <option value="baby seat">baby seat</option>
+        <option value="child seat">child seat</option>
+        <option value="booster">booster seat</option>
+      </select>
+      <label for="adnotations">Uwagi</label>
+      <input type="text" name="adnotations" id="adnotations">
+      <button class="ok">ok</button>
+      <button class="history_button">historia</button>
+    </div>
+    <div class="modal">
+      <div class="text"></div>
+      <div class="buttons">
+        <button class="modal_button save">zapisz</button>
+        <button class="modal_button change">popraw</button>
+      </div>
+    </div>
+    <div class="history">
+      <div class="text_history">
+      </div>
+      <button class="back">powrót</button>
+    </div>
+  </div>
+  <script src="./script.js"></script>
+</body>
+
+</html>
